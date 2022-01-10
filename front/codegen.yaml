@@ -1,0 +1,21 @@
+schema: ../api/src/schema.gql
+watch:
+  - ../api/src/schema.graphql
+  - ./src/**/*.graphql
+config:
+  skipTypename: true
+hooks:
+  afterOneFileWrite:
+    - prettier --write
+generates:
+  ./src/graphql/sdk.ts:
+    documents:
+      - ./src/**/*.graphql
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+      - add:
+          content: '/* eslint-disable */'
+    config:
+      withHooks: true

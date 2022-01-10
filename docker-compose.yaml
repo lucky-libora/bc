@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  redis:
+    image: redis:6.2.6-alpine
+  api:
+    image: node:16.13.0-alpine
+    working_dir: /app
+    command: yarn start:debug
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./api:/app
+    depends_on:
+      - redis
+    ports:
+      - "9229:9229"
+  front:
+    image: node:16.13.0-alpine
+    working_dir: /app
+    command: yarn start
+    volumes:
+      - ./front:/app
+      # required for graphql schema watch
+      - ./api:/api
+    depends_on:
+      - api
+  nginx:
+    image: nginx:1.21.3-alpine
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - api
+      - front
+    ports:
+      - "3000:3000"

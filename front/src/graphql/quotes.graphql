@@ -1,0 +1,6 @@
+query quotes($symbols: [String!]!) {
+    quotes(symbols: $symbols) {
+        lastPrice
+        symbol
+    }
+}

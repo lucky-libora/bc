@@ -1,0 +1,11 @@
+{
+  "name": "Blocktap.io",
+  "schemaPath": "schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "Default GraphQL Endpoint": {
+        "url": "https://api.blocktap.io/graphql"
+      }
+    }
+  }
+}

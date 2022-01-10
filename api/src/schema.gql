@@ -1,0 +1,12 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Quote {
+  lastPrice: String!
+  symbol: String!
+}
+
+type Query {
+  quotes(symbols: [String!]!): [Quote!]!
+}
